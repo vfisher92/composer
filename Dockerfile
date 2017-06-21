@@ -13,7 +13,11 @@ RUN composer global require "hirak/prestissimo:^0.3"
 RUN composer global require fxp/composer-asset-plugin
 RUN composer config --global github-oauth.github.com 50d0f2d7993cd829c34f362b93400839088e4b49
 
-COPY ./id_rsa ~/.ssh/id_rsa
+RUN mkdir /root/.ssh/
+ADD id_rsa /root/.ssh/id_rsa
+
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 
 RUN  echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config
 
