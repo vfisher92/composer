@@ -16,6 +16,8 @@ RUN composer config --global github-oauth.github.com 50d0f2d7993cd829c34f362b934
 RUN mkdir /root/.ssh/
 ADD id_rsa /root/.ssh/id_rsa
 
+RUN chmod 400 /root/.ssh/id_rsa
+
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 
